@@ -204,7 +204,8 @@ public abstract class AbstractQuery<T extends Query<?, ?>, U> extends ListQueryP
       if (nullHandlingOnOrder.equals(NullHandlingOnOrder.NULLS_FIRST)) {
 
         if (ProcessEngineConfigurationImpl.DATABASE_TYPE_H2.equals(databaseType) || ProcessEngineConfigurationImpl.DATABASE_TYPE_HSQL.equals(databaseType)
-            || ProcessEngineConfigurationImpl.DATABASE_TYPE_POSTGRES.equals(databaseType) || ProcessEngineConfigurationImpl.DATABASE_TYPE_ORACLE.equals(databaseType)) {
+            || ProcessEngineConfigurationImpl.DATABASE_TYPE_POSTGRES.equals(databaseType) || ProcessEngineConfigurationImpl.DATABASE_TYPE_ORACLE.equals(databaseType)
+                || ProcessEngineConfigurationImpl.DATABASE_TYPE_DM.equals(databaseType)) {
           orderBy = orderBy + defaultOrderByClause + " NULLS FIRST";
         } else if (ProcessEngineConfigurationImpl.DATABASE_TYPE_MYSQL.equals(databaseType)) {
           orderBy = orderBy + "isnull(" + column + ") desc," + defaultOrderByClause;
@@ -217,7 +218,8 @@ public abstract class AbstractQuery<T extends Query<?, ?>, U> extends ListQueryP
       } else if (nullHandlingOnOrder.equals(NullHandlingOnOrder.NULLS_LAST)) {
 
         if (ProcessEngineConfigurationImpl.DATABASE_TYPE_H2.equals(databaseType) || ProcessEngineConfigurationImpl.DATABASE_TYPE_HSQL.equals(databaseType)
-            || ProcessEngineConfigurationImpl.DATABASE_TYPE_POSTGRES.equals(databaseType) || ProcessEngineConfigurationImpl.DATABASE_TYPE_ORACLE.equals(databaseType)) {
+            || ProcessEngineConfigurationImpl.DATABASE_TYPE_POSTGRES.equals(databaseType) || ProcessEngineConfigurationImpl.DATABASE_TYPE_ORACLE.equals(databaseType)
+                || ProcessEngineConfigurationImpl.DATABASE_TYPE_DM.equals(databaseType)) {
           orderBy = orderBy + column + " " + sortOrder + " NULLS LAST";
         } else if (ProcessEngineConfigurationImpl.DATABASE_TYPE_MYSQL.equals(databaseType)) {
           orderBy = orderBy + "isnull(" + column + ") asc," + defaultOrderByClause;

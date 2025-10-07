@@ -918,7 +918,10 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
   public static final String DATABASE_TYPE_MSSQL = "mssql";
   public static final String DATABASE_TYPE_DB2 = "db2";
 
-  public static Properties getDefaultDatabaseTypeMappings() {
+  public static final String DATABASE_TYPE_DM = "dm"; // 适配达梦数据库，追加成员变量
+
+
+    public static Properties getDefaultDatabaseTypeMappings() {
     Properties databaseTypeMappings = new Properties();
     databaseTypeMappings.setProperty("H2", DATABASE_TYPE_H2);
     databaseTypeMappings.setProperty("HSQL Database Engine", DATABASE_TYPE_HSQL);
@@ -948,7 +951,8 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
     databaseTypeMappings.setProperty("DB2/PTX", DATABASE_TYPE_DB2);
     databaseTypeMappings.setProperty("DB2/2", DATABASE_TYPE_DB2);
     databaseTypeMappings.setProperty("DB2 UDB AS400", DATABASE_TYPE_DB2);
-    return databaseTypeMappings;
+    databaseTypeMappings.setProperty("DM DBMS", DATABASE_TYPE_DM);		// 适配达梦数据库
+        return databaseTypeMappings;
   }
 
   public void initDatabaseType() {

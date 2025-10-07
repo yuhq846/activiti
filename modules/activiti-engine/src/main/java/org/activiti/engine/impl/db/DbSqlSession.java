@@ -1121,6 +1121,9 @@ public class DbSqlSession implements Session {
 
   public String getResourceForDbOperation(String directory, String operation, String component) {
     String databaseType = dbSqlSessionFactory.getDatabaseType();
+    if(ProcessEngineConfigurationImpl.DATABASE_TYPE_DM.equals(databaseType)){
+      databaseType=ProcessEngineConfigurationImpl.DATABASE_TYPE_ORACLE;
+    }
     return "org/activiti/db/" + directory + "/activiti." + databaseType + "." + operation + "." + component + ".sql";
   }
 
